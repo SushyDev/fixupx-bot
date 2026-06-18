@@ -1,0 +1,18 @@
+# Elixir/Mix artifacts
+/_build/
+/deps/
+/doc/
+/.elixir_ls/
+
+# Environment secrets — never commit the real .env
+.env
+
+# Mix lock file should be committed, but generated manifests should not
+/priv/static/
+
+# Editor directories
+.direnv/
+.idea/
+.vscode/
+*.swp
+*.swo
