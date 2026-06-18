@@ -27,18 +27,22 @@ defmodule FixupxBot.LinkFixer do
   Returns `true` when `content` contains at least one Twitter/X link.
 
   Used as a cheap early-exit guard before running the full `fix/1` replacement.
+  We check for `//x.com` (protocol+domain) to avoid false positives from `fixupx.com`.
 
   ## Examples
 
       iex> FixupxBot.LinkFixer.contains_link?("check https://x.com/foo")
       true
 
+      iex> FixupxBot.LinkFixer.contains_link?("https://fixupx.com/foo")
+      false
+
       iex> FixupxBot.LinkFixer.contains_link?("nothing here")
       false
   """
   @spec contains_link?(String.t()) :: boolean()
   def contains_link?(content) when is_binary(content) do
-    String.contains?(content, "x.com") or String.contains?(content, "twitter.com")
+    String.contains?(content, "//x.com") or String.contains?(content, "//twitter.com")
   end
 
   @doc """
